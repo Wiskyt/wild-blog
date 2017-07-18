@@ -20,7 +20,8 @@ module.exports = (app) => {
    })
 
    // GET method 
-   app.get('/posts/bookmarks/:bookmarksArr', (req, res, next) => {
+   app.get('/posts/bookmarks/:bookmarks', (req, res, next) => {
+      req.params.bookmarks = JSON.parse(req.params.bookmarks);
       return ctrl.findByBookmarks(req, res, next)
    })
 
