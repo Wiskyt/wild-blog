@@ -20,7 +20,7 @@ module.exports = (app) => {
    })
 
    // GET method 
-   app.get('/posts/bookmarks/:userId', (req, res, next) => {
+   app.get('/posts/bookmarks/:bookmarksArr', (req, res, next) => {
       return ctrl.findByBookmarks(req, res, next)
    })
 

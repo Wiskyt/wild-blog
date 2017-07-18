@@ -38,9 +38,11 @@ class PostsController extends Controller {
 
    findByBookmarks(req, res, next) {
 
+      console.log("Got bookmarks", req.params.bookmarks)
+
       let obj = {
          published: true,
-         _id: { $in: [req.body.bookmarks] }
+         _id: { $in: [req.params.bookmarks] }
       }
       
       this.model.find(obj, (err, documents) => {

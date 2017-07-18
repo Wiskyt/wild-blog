@@ -15,6 +15,9 @@ export default ['$http', class PostsService {
         // HTTP Request method GET with param (post id) to our express API
         return this.$http.get('/api/posts/' + id)
     }
+    getBookmarks(bookmarks) {
+       return this.$http.get('/api/posts/bookmarks/' + bookmarks)
+    }
     save(post) {
         if (post._id) {
             // HTTP Request method PUT (update) with param and data (post) to our express API
