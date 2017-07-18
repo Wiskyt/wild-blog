@@ -53,6 +53,13 @@ let blogItem = {
          $state.go('blog.list')
       }
 
+      this.isEditing = () => {
+         if (this.editable && this.editMode)
+            return true
+
+         return false
+      }
+
       // Create delete function.
       // If you want to use in view you can call with $ctrl.delete()
       this.delete = () => {
@@ -101,24 +108,29 @@ let blogItem = {
       }
 
       this.isFav = () => {
-         if (!this.post) return
-         return (this.user.bookmarks.find((post_id) => post_id.id === this.post._id))
+         if (this.post) {
+            return (this.user.bookmarks.find((post_id) => post_id === this.post._id) ? "turned_in" : "turned_in_not")
+         } else {
+            return "turned_in_not"
+         }
       }
 
       this.addOrRemoveToBookmark = () => {
          // Try to find post in bookmarks
-         let postFound = this.user.bookmarks.find((post) => post.id === this.post._id)
+         let postFound = this.user.bookmarks.find((post_id) => post_id === this.post._id)
 
          if (!postFound) {
             //Not found
             this.user.bookmarks.push(this.post._id)
+            console.log('Added !', this.user.bookmarks);
          } else {
             //Found
-            this.user.bookmark = this.user.bookmarks.filtered((post_id) => {
+            this.user.bookmarks = this.user.bookmarks.filter((post_id) => {
                return post_id !== this.post._id
             })
          }
 
+         console.log(this.user.bookmarks)
          UsersService.update(this.user).then((res) => {
             //return UsersService.setToken(res.data.token)
          }).then((user) => {
