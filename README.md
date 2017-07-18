@@ -1,7 +1,31 @@
 # wild-blog
-A simple MEAN Stack blog
 
-This app is used as a project for the final evaluation of JS students of Wild Code School. 
-There's nothing in the readme, all the exercices that students need to do are in a private Google Drive. 
+## A MEAN Stack blog platform, featuring
 
-This repository is only there so that it can be forked by students. 
+   - Local user registering / connection
+   - Facebook OAuth connection
+   - Administration panel
+   - Transferrable user rights 
+   - Creation and edition of articles
+
+
+## How to start the project ?
+
+   You need to create a dev.js file in config/ that follows this pattern
+
+   ````````
+   module.exports = {
+      db: 'YOUR_MONGODB_URI',
+      facebookAuth: {
+      clientID: "XXX", // your App ID
+      clientSecret: "XXX", // your App Secret
+      callbackURL: "http://localhost:YOUR_PORT/api/auth/facebook/callback"
+      }
+   }
+   ````````
+
+   You can then start the project
+   
+   ````````
+   npm i && npm run dev
+   `````````
