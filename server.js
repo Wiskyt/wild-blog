@@ -86,7 +86,7 @@ exports.startServer = (port, path, callback) => {
     // Listening
     port = process.env.PORT || port
     server.listen(port, callback)
-    console.log(`server listening on port ${port}`)
+    console.log(`\nServer listening on port ${port}\n`)
 
     //Intercept when application killed
     process.on('SIGINT', function() {
