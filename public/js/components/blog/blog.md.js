@@ -33,7 +33,7 @@ let blogModule = angular.module('app.blog', [])
             })
             .state('blog.bookmarks', {
                url: '/bookmarks',
-               template: '<blog-list ></blog-list>'
+               template: '<blog-bookmarks></blog-bookmarks>'
            })
     }])
     .name
