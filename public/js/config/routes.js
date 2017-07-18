@@ -36,7 +36,22 @@ export default ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($s
          template: '<h5> {{friends}} </h5>',
          controller: ['$scope', function ($scope) {
             $scope.people = ["Ryan", "Olliver", "C18", "John", "Sam", "Mark", "", "R2D2"];
-            $scope.friends = $scope.people.filter( (dude) => dude.length === 4);
+            $scope.friends = $scope.people.filter((dude) => dude.length === 4);
+         }]
+      })
+      .state('algo2', {
+         url: '/algo1',
+         template: '<h5> {{foldTo(14928418679754190000)}} </h5>',
+         controller: ['$scope', function ($scope) {
+            
+            $scope.foldTo = function foldTo(distance) {
+               if (!(typeof distance === 'number' && distance > 0)) return null;
+
+               let nFold = 0;
+               for (let thickness = 0.0001; thickness < distance; nFold++) thickness *= 2;
+
+               return nFold;
+            }
          }]
       })
 }]
