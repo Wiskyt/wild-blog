@@ -27,7 +27,6 @@ export default ['$http', '$cookies', '$window', '$q', class UsersService {
    }
 
    update(user) {
-      console.log(this.currentUser.bookmarks, user.bookmarks)
       return this.$http.put('/api/users/' + user._id, user)
    }
 
