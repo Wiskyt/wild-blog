@@ -17,7 +17,7 @@
                {{$ctrl.post.publishedAt}}
             </span>
 
-            <p style="white-space: pre;">
+            <p ng-class="{ lineReturns: $ctrl.lineReturns }">
                {{$ctrl.post.content | limitTo: ($ctrl.editable ? $ctrl.post.content.length : 110)}}
             </p>
          </div>
@@ -51,6 +51,7 @@
       <div class="card-action">
          <!-- Display this link, only if it's not editable, to change state to blog.item with the post id -->
          <a ng-if="!$ctrl.editable" ui-sref="blog.item({id: $ctrl.post._id})">Read more</a>
+         <a ng-click="$ctrl.lineReturns = $ctrl.lineReturns ? false : true">\n -> br</a>
          <!-- Display this link, only if it's editable and not in edit mode, to change state to app.blog.list (go back) -->
          <a ng-if="$ctrl.editable && !$ctrl.editMode" ui-sref="blog.list">Close</a>
          <!-- Display these links, only if it's in edit mode  -->
