@@ -17,9 +17,9 @@
                {{$ctrl.post.publishedAt}}
             </span>
 
-            <div>
+            <p style="white-space: pre;">
                {{$ctrl.post.content | limitTo: ($ctrl.editable ? $ctrl.post.content.length : 110)}}
-            </div>
+            </p>
          </div>
 
          <!-- Otherwise, edit -->
