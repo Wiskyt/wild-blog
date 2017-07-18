@@ -40,7 +40,7 @@ export default ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($s
          }]
       })
       .state('algo2', {
-         url: '/algo1',
+         url: '/algo2',
          template: '<h5> {{foldTo(14928418679754190000)}} </h5>',
          controller: ['$scope', function ($scope) {
             
@@ -54,4 +54,43 @@ export default ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($s
             }
          }]
       })
+      .state('algo3', {
+         url: '/algo3',
+         template: '<h5> {{ battle([ [ 1, 3 ], [ 3, 4 ] ], [ [ 2, 8 ], [5, 2] ]) }} </h5>',
+         controller: ['$scope', function ($scope) {
+            
+            $scope.battle = function battle(player1, player2) {
+               let length = player1.length > player2.length ? player2.length : player1.length;
+               
+               for (let i = 0; i < length; i++) {
+                 let p1c = player1[i], p2c = player2[i];
+                   
+                 if (p1c[1] - p2c[0] <= 0) p1c[1] = 0;
+                 if (p2c[1] - p1c[0] <= 0) p2c[1] = 0;
+               }
+               
+               return {
+                 player1: player1.filter((c) => c[1] > 0),
+                 player2: player2.filter((c) => c[1] > 0)
+               }
+             }
+         }]
+      })
+
+
+      function battle(player1, player2) {
+         let length = player1.length > player2.length ? player2.length : player1.length;
+         
+         for (let i = 0; i < length; i++) {
+           let p1c = player1[i], p2c = player2[i];
+             
+           if (p1c[1] - p2c[0] <= 0) p1c[1] = 0;
+           if (p2c[1] - p1c[0] <= 0) p2c[1] = 0;
+         }
+         
+         return {
+           player1: player1.filter((c) => c[1] > 0),
+           player2: player2.filter((c) => c[1] > 0)
+         }
+       }
 }]
