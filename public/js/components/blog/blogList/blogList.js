@@ -33,7 +33,6 @@ let blogList = {
             // Add 3 to startIndex
             this.startIndex += 3
         }
-
     }]
 }
 

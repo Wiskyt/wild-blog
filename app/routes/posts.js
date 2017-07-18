@@ -19,6 +19,12 @@ module.exports = (app) => {
       return ctrl.findById(req, res, next)
    })
 
+   // GET method 
+   app.get('/posts/bookmarks/:bookmarks', (req, res, next) => {
+      req.params.bookmarks = JSON.parse(req.params.bookmarks);
+      return ctrl.findByBookmarks(req, res, next)
+   })
+
    //POST (for CREATE) method
    app.post('/posts', (req, res, next) => {
       req.body.publishedAt = new Date(typeof req.body.publishedAt === "number" ? req.body.publishedAt : parseInt(req.body.publishedAt))

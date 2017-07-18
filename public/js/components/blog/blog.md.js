@@ -7,31 +7,37 @@ blog.item : nested state of state app.blog, display blog-item component with edi
 import blogItem from './blogItem/blogItem'
 import blogItemMenu from './blogItem/blogItemMenu'
 import blogList from './blogList/blogList'
+import blogBookmarks from './blogBookmarks/blogBookmarks'
 
 let blogModule = angular.module('app.blog', [])
-    .component('blogItem', blogItem)
-    .component('blogItemMenu', blogItemMenu)
-    .component('blogList', blogList)
-    .config(['$stateProvider', ($stateProvider, $urlRouterProvider, $locationProvider) => {
-        /*
-          Define a state with name 'blog' this state is abstract and url is empty (root of application)
-          template is ui-view it's used to display nested views
-        */
-        $stateProvider
-            .state('blog', {
-                url: '/posts',
-                abstract: true,
-                templateUrl: 'js/components/blog/blog.html'
-            })
-            .state('blog.list', {
-                url: '/',
-                template: '<blog-list></blog-list>'
-            })
-            .state('blog.item', {
-                url: '/:id',
-                template: '<blog-item editable="true"></blog-item>'
-            })
-    }])
-    .name
+   .component('blogItem', blogItem)
+   .component('blogItemMenu', blogItemMenu)
+   .component('blogList', blogList)
+   .component('blogBookmarks', blogBookmarks)
+   .config(['$stateProvider', ($stateProvider, $urlRouterProvider, $locationProvider) => {
+      /*
+        Define a state with name 'blog' this state is abstract and url is empty (root of application)
+        template is ui-view it's used to display nested views
+      */
+      $stateProvider
+         .state('blog', {
+            url: '/posts',
+            abstract: true,
+            templateUrl: 'js/components/blog/blog.html'
+         })
+         .state('blog.list', {
+            url: '/',
+            template: '<blog-list></blog-list>'
+         })
+         .state('blog.bookmarks', {
+            url: '/bookmarks',
+            template: '<blog-bookmarks></blog-bookmarks>'
+         })
+         .state('blog.item', {
+            url: '/:id',
+            template: '<blog-item editable="true"></blog-item>'
+         })
+   }])
+   .name
 
 export default blogModule
