@@ -122,10 +122,9 @@ let blogItem = {
                return post_id !== this.post._id
             })
          }
-
-         console.log(this.user.bookmarks)
+         
          UsersService.update(this.user).then((res) => {
-            //return UsersService.setToken(res.data.token)
+            return UsersService.setToken(res.data.token)
          }).then((user) => {
             Materialize.toast((postFound ? 'Removed' : 'Added'), 2000, (postFound ? 'toast-warning' : 'toast-success'))
          }).catch((err) => {
