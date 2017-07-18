@@ -2,11 +2,14 @@ import moment from 'moment'
 
 let navbar = {
    templateUrl: 'js/components/common/navbar.html',
-   controller: ['UsersService', '$state', function (UsersService, $state) {
+   controller: ['UsersService', '$state', '$interval', function (UsersService, $state, $interval) {
       'use strict'
 
       this.date = moment();
-      console.log(this.date);
+      // Update it every second
+      $interval(() => {
+         this.date = moment();
+      }, 1000)
 
       angular.extend(this, {
          $onInit() {
