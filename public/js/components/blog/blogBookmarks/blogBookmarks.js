@@ -6,10 +6,13 @@ let blogBookmarks = {
       UsersService.getCurrent().then((user) => {
          this.user = user
 
+         // This request creates a redirection no idea why
          PostsService.getBookmarks(this.user.bookmarks).then((res) => {
-            this.posts = res.data
+            this.posts = res.data   
 
             console.log('Found bookmarked articles !', this.posts)
+         }).catch((err) => {
+            console.log(err)
          })
 
       }).catch((err) => {

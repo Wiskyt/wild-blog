@@ -16,7 +16,7 @@ export default ['$http', class PostsService {
         return this.$http.get('/api/posts/' + id)
     }
     getBookmarks(bookmarks) {
-       return this.$http.get('/api/posts/bookmarks/' + (JSON.stringify(bookmarks)))
+       return this.$http.get('/api/posts/bookmarks/' + JSON.stringify(bookmarks))
     }
     save(post) {
         if (post._id) {
