@@ -13,16 +13,16 @@
 
    You need to create a dev.js file in config/ that follows this pattern
 
-   ````````
+   ```js
    module.exports = {
       db: 'YOUR_MONGODB_URI',
       facebookAuth: {
-      clientID: "XXX", // your App ID
-      clientSecret: "XXX", // your App Secret
-      callbackURL: "http://localhost:YOUR_PORT/api/auth/facebook/callback"
+         clientID: "XXX", // your App ID
+         clientSecret: "XXX", // your App Secret
+         callbackURL: "http://localhost:YOUR_PORT/api/auth/facebook/callback"
       }
    }
-   ````````
+   ```
 
    You can then start the project
    
