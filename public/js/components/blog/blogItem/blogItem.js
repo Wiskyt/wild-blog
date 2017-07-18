@@ -101,7 +101,11 @@ let blogItem = {
       }
 
       this.isFav = () => {
-         return (this.user.bookmarks.find((post_id) => post_id === this.post._id))
+         if (this.post) {
+            return (this.user.bookmarks.find((post_id) => post_id === this.post._id) ? "turned_in" : "turned_in_not")
+         } else {
+            return "turned_in_not"
+         }
       }
 
       this.addOrRemoveToBookmark = () => {
@@ -111,6 +115,7 @@ let blogItem = {
          if (!postFound) {
             //Not found
             this.user.bookmarks.push(this.post._id)
+            console.log('Added !', this.user.bookmarks);
          } else {
             //Found
             this.user.bookmarks = this.user.bookmarks.filter((post_id) => {
@@ -118,8 +123,7 @@ let blogItem = {
             })
          }
 
-         this.post.isFav = this.isFav()
-
+         console.log(this.user.bookmarks)
          UsersService.update(this.user).then((res) => {
             //return UsersService.setToken(res.data.token)
          }).then((user) => {

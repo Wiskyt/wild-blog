@@ -52,7 +52,9 @@
          <!-- On click add or remove to bookmark this post -->
          <a href="" ng-click="$ctrl.addOrRemoveToBookmark()" ng-if="$ctrl.user && !$ctrl.post.isNew">
             <!-- Change icon from post.isFav value -->
-            <i class="material-icons pull-right">{{($ctrl.post.isFav ? 'turned_in' : 'turned_in_not')}}</i>
+            <!-- <i class="material-icons pull-right">{{($ctrl.post.isFav ? 'turned_in' : 'turned_in_not')}}</i> -->
+            {{$ctrl.isFav()}}
+            <i class="material-icons pull-right">{{$ctrl.isFav()}}</i>
          </a>
       </div>
    </div>

@@ -59,7 +59,6 @@ class UsersController extends Controller {
             if (err) {
                 next(err)
             } else {
-              console.log(user)
               return res.json({token: user.generateJWT()})
             }
         })
