@@ -35,10 +35,17 @@ let blogItem = {
          } else {
             // If $stateParams.id is an id we make HTTP request with this id to get data
             PostsService.getById($stateParams.id).then((res) => {
-               // when this request receives response we affect response data to this controller variable post
-               this.post = res.data;
-               // save into initialPost a copy of this post (used for undo)
-               initialPost = angular.copy(this.post)
+               if (res.data.published) {
+                  // when this request receives response we affect response data to this controller variable post
+                  this.post = res.data;
+                  // save into initialPost a copy of this post (used for undo)
+                  initialPost = angular.copy(this.post)
+               }
+            }).catch((err) => {
+               if (err.status === 403) {
+                  Materialize.toast('Article not published yet', 4000, 'materialize-info')
+                  $state.go('blog.list')
+               }
             })
          }
       } else {

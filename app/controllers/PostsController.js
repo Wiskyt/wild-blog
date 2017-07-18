@@ -11,9 +11,30 @@ let Post = require('../models/post')
 class PostsController extends Controller {
 
 
-    constructor() {
-        super(Post)
-    }
+   constructor() {
+      super(Post)
+   }
+
+   find(req, res, next) {
+      this.model.find({ published: true }, (err, documents) => {
+         res.json(documents)
+      })
+   }
+
+   findById(req, res, next) {
+      // Get a unique document by request param, this param need to be id
+      this.model.findById(req.params.id, (err, document) => {
+         if (err)
+            next(err)
+         else {
+            if (document.published) {
+               res.json(document)
+            } else {
+               res.status(403).json({action: "redirect", to: "posts", message: "Cannot access invisible article"})
+            }
+         }
+      })
+   }
 
 }
 
