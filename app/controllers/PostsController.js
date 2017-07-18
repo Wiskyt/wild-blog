@@ -30,8 +30,24 @@ class PostsController extends Controller {
             if (document.published) {
                res.json(document)
             } else {
-               res.status(403).json({action: "redirect", to: "posts", message: "Cannot access invisible article"})
+               res.status(403).json({ action: "redirect", to: "posts", message: "Cannot access invisible article" })
             }
+         }
+      })
+   }
+
+   findByBookmarks(req, res, next) {
+
+      let obj = {
+         published: true,
+         _id: { $in: [req.body.bookmarks] }
+      }
+      
+      this.model.find(obj, (err, documents) => {
+         if (err)
+            next(err)
+         else {
+            res.json(documents)
          }
       })
    }
