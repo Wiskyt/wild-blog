@@ -53,6 +53,13 @@ let blogItem = {
          $state.go('blog.list')
       }
 
+      this.isEditing = () => {
+         if (this.editable && this.editMode)
+            return true
+
+         return false
+      }
+
       // Create delete function.
       // If you want to use in view you can call with $ctrl.delete()
       this.delete = () => {
